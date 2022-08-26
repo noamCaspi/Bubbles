@@ -43,7 +43,7 @@ class Button {
   }
   
   boolean overButton() {
-    return ((mouseX - x)*(mouseX - x) + (mouseY-y)*(mouseY-y) <= radius*radius);
+    return ((mouseX - x - tomove)*(mouseX - x - tomove) + (mouseY - y)*(mouseY - y) <= this.radius*this.radius);
   } //<>//
 }
 
@@ -102,12 +102,12 @@ class SoundButton extends Button {
   }
   
   void drawSound() {
-    pushMatrix();
+    //pushMatrix();
     translate(-20, 0, 50);
     fill(0);
     strokeWeight(8);
-    rect(soundX - 10, soundY - 2, 8, 8);
-    float x1 = soundX - 2;
+    rect(soundX - 10 - tomove*1.33, soundY - 2, 8, 8);
+    float x1 = soundX - 2 - tomove*1.33;
     float y1 = soundY + 6;
     fill(0);
     noStroke();
@@ -121,7 +121,7 @@ class SoundButton extends Button {
       noStroke();
     }
     translate(20, 0, -50);
-    popMatrix();
+    //popMatrix();
   }
 }
 

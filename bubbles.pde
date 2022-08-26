@@ -181,17 +181,9 @@ void stateRemoveCluster(float dt) {
       Tile tile = floatingclusters.get(i).get(j);
       if (tile.type >= 0) {
         tilesleft = true;
-        // Accelerate dropped tiles
-        //tile.velocity += dt * 700;
-        //tile.shift += dt;// * tile.velocity;
-        // Alpha animation
-        //tile.alpha -= dt * 8;
-        //if (tile.alpha < 0) {
           tile.alpha = 0;
-        //}
         // Check if the bubbles are past the bottom of the level
         if (tile.alpha == 0 || (tile.y * rowheight + tile.shift > (rows - 1) * rowheight + tilewidth)) {
-        //if ((tile.y * rowheight + tile.shift > (rows - 1) * rowheight + tilewidth)) {
           tile.type = -1;
           tile.shift = 0;
           tile.alpha = 1;
@@ -733,8 +725,8 @@ void breath() {
 }
 
 boolean pressureCheck2() {
-  //if (bmpVal > power) {  // ######################################################################################################
-  if (mousePressed) {
+  if (bmpVal > power) {  // ######################################################################################################
+  //if (mousePressed) {
     if (timer.running) {
       float centerx = player.x;
       float centery = player.y;
@@ -839,16 +831,16 @@ void settingsScreen2() {
 
 
 void drawSettingsBubbles() {
-  translate(-tomove*1.33, 0, 0);
+  //translate(tomove*1.33, 0, 0);
   noStroke();
   lights();
-  pushMatrix();
+  //pushMatrix();
   settings_but.display();
   sound_but.display();
   info_but.display();
   ng_but.display();
-  popMatrix();
-  translate(tomove*1.33, 0, 0);
+  //popMatrix();
+  //translate(-tomove*1.33, 0, 0);
 }
 
 void drawArrow(int cx, int cy, float len, float angle) {
@@ -1114,7 +1106,7 @@ void setup() {
   hs3 = new HScrollbar(270, 690/2+90, 900/4, 16, 16, 255, 128, 0, 3, 6);
   settings = true;
 
-  //myPort = new Serial (this, Serial.list()[0], 9600); // ######################################################################################################
+  myPort = new Serial (this, Serial.list()[0], 9600); // ######################################################################################################
 
   width1 = columns * tilewidth + tilewidth/2;
   height1 = (rows-1) * rowheight + tilewidth;
@@ -1201,57 +1193,34 @@ void drawText(String text, float x, float y) {
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void mouseMoved() {
-  // Get the mouse position
-  int x = mouseX - tomove;
-  int y = mouseY;
+//void mouseMoved() {
+//  // Get the mouse position
+//  int x = mouseX - tomove;
+//  int y = mouseY;
 
-  // Get the mouse angle
-  double mouseangle = radToDeg(Math.atan2((player.y+tilewidth/2) - y, x - (player.x+tilewidth/2)));
+//  // Get the mouse angle
+//  double mouseangle = radToDeg(Math.atan2((player.y+tilewidth/2) - y, x - (player.x+tilewidth/2)));
 
-  // Convert range to 0, 360 degrees
-  if (mouseangle < 0) {
-    mouseangle = 180 + (180 + mouseangle);
-  }
+//  // Convert range to 0, 360 degrees
+//  if (mouseangle < 0) {
+//    mouseangle = 180 + (180 + mouseangle);
+//  }
 
-  // Restrict angle to 8, 172 degrees
-  var lbound = 8;
-  var ubound = 172;
-  if (mouseangle > 90 && mouseangle < 270) {
-    // Left
-    if (mouseangle > ubound) {
-      mouseangle = ubound;
-    }
-  } else {
-    // Right
-    if (mouseangle < lbound || mouseangle >= 270) {
-      mouseangle = lbound;
-    }
-  }
-  player.angle = mouseangle;
-}
+//  // Restrict angle to 8, 172 degrees
+//  var lbound = 8;
+//  var ubound = 172;
+//  if (mouseangle > 90 && mouseangle < 270) {
+//    // Left
+//    if (mouseangle > ubound) {
+//      mouseangle = ubound;
+//    }
+//  } else {
+//    // Right
+//    if (mouseangle < lbound || mouseangle >= 270) {
+//      mouseangle = lbound;
+//    }
+//  }
+//  player.angle = mouseangle;
+//}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//void draw()
-//{
-//  background(255);  
-//  int radio=12;
-//  float teethHeight=0.48*radio; 
-//  float centerPositionX=100;//2*width/3-radio-teethHeight/2;
-//  float centerPositionY=100;//height/2;
-//  drawGear(radio, centerPositionX, centerPositionY, teethHeight);
-//}
-
-//final int minNumberOfTeeth=3;
-//final int maxNumberOfTeeth=40;
-
-//void setup()
-//{
-//  size(1350, 690);  
-//  frameRate(60);
-//  textAlign(CENTER);
-//  textSize(18);
-//}
